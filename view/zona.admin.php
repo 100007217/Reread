@@ -34,6 +34,7 @@
                 <input type="submit" value="añadir libro">
             </form>
         </div>
+        <!--ACTIVIDAD 2-->
         <div class="column-2" id="filter">
             <form action="zona.admin.php" method="post">
                 <input type="text" placeholder="buscar por título..." name="titulo">
@@ -52,8 +53,17 @@
                 </tr>
                 <!-- Recoger libros de la base de datos -->
                 <?php
-                //ACTIVIDAD 1
-                $query = "SELECT books.title,books.description,authors.name from books inner join BooksAuthors on booksauthors.bookid=books.id inner join authors on booksauthors.authorid=authors.id";
+                //ACTIVIDAD 1 y 2
+                if (isset($_POST['titulo'])) {
+                    $query = "SELECT books.title,books.description,authors.name from books 
+                    inner join BooksAuthors on booksauthors.bookid=books.id 
+                    inner join authors on booksauthors.authorid=authors.id where books.title like '%". $_POST['titulo']."%'";
+                }else {
+                    $query = "SELECT books.title,books.description,authors.name from books 
+                    inner join BooksAuthors on booksauthors.bookid=books.id 
+                    inner join authors on booksauthors.authorid=authors.id";
+                }
+                
                 $result = mysqli_query($conn, $query);
 
                         if (!empty($result) && mysqli_num_rows($result) > 0) {
