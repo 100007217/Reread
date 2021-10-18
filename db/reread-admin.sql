@@ -20,8 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `reread-admin`
 --
-CREATE DATABASE IF NOT EXISTS `reread-admin` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
-USE `reread-admin`;
+CREATE DATABASE IF NOT EXISTS `reread` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `reread`;
 
 -- --------------------------------------------------------
 
