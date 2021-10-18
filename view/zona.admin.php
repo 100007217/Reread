@@ -41,7 +41,7 @@
             </form>
         </div>
     </div>
-
+    
     <div class="row padding-top-less padding-lat">
         <div class="column-1">
             <table>
@@ -51,6 +51,24 @@
                     <th>Autor</th>
                 </tr>
                 <!-- Recoger libros de la base de datos -->
+                <?php
+                //ACTIVIDAD 1
+                $query = "SELECT books.title,books.description,authors.name from books inner join BooksAuthors on booksauthors.bookid=books.id inner join authors on booksauthors.authorid=authors.id";
+                $result = mysqli_query($conn, $query);
+
+                        if (!empty($result) && mysqli_num_rows($result) > 0) {
+                        // datos de salida de cada fila (fila = row)
+                            while ($row = mysqli_fetch_array($result)) {
+                            echo "<tr>";
+                            echo "<td>".$row['title']."</td>";
+                            echo "<td>".$row['description']."</td>";
+                            echo "<td>".$row['name']."</td>";
+                            echo "</tr>";
+                            }
+                        } else {
+                            echo "0 resultados";
+                        }
+                ?>
  
             </table>
         </div>
