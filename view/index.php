@@ -25,8 +25,8 @@
         <div class="column middle">
             <div class="topnav">
                 <a href="index.php" class="active">Re-Read</a>
-                <a href="libros.html">Libros</a>
-                <a href="ebooks.html">eBooks</a>
+                <a href="libros.php">Libros</a>
+                <a href="ebooks.php">eBooks</a>
             </div>
             <div class="textpage">
                 <h3>Nunca la lectura ha sido tan necesaria</h3>
