@@ -12,6 +12,10 @@ $user = mysqli_query($conn,"SELECT * FROM Users WHERE Email='$email' and Pass=MD
 if (mysqli_num_rows($user) == 1) {
     // coincidencia de credenciales
     session_start();
+    //ACTIVIDAD 3
+    $usuario=mysqli_fetch_array($user);
+    $_SESSION['username']=$usuario['Name'];
+    echo $_SESSION['username'];
     $_SESSION['email']=$email;
     header("location: ../view/zona.admin.php");
 } else {
