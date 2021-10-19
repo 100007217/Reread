@@ -39,14 +39,22 @@
 
                     if (!empty($result) && mysqli_num_rows($result) > 0) {
                     // datos de salida de cada fila (fila = row)
+                    $i=2;
                         while ($row = mysqli_fetch_array($result)) {
                             //echo "<p>".$row['img']."</p>";
                             //echo "<p>".$row['Description']."</p>";
-
-                            echo "<div class='gallery'>
-                                     <img src='../img/".$row['img']."' alt='Cell'>
+                            $i++;
+                            if ($i % 3 == 0) {
+                                echo "<div class='gallery clear'>
+                                <img src='../img/".$row['img']."'>
                                 <div class='desc'>".$row['Description']."</div>
-                                </div>";
+                              </div>";
+                            }else { 
+                                echo "<div class='gallery'>
+                                    <img src='../img/".$row['img']."'>
+                                    <div class='desc'>".$row['Description']."</div>
+                                  </div>";
+                            }
                         }
                     }
                         
