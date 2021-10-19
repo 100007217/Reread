@@ -68,6 +68,18 @@
 
                         if (!empty($result) && mysqli_num_rows($result) > 0) {
                         // datos de salida de cada fila (fila = row)
+                          
+                        foreach ($result as $row) {
+                            echo "<tr>";
+                            echo "<td>".$row['title']."</td>";
+                            echo "<td>".$row['description']."</td>";
+                            echo "<td>".$row['name']."</td>";
+                            echo "</tr>";
+                            }
+
+                           /*
+                            AQUI UN WHILE 
+
                             while ($row = mysqli_fetch_array($result)) {
                             echo "<tr>";
                             echo "<td>".$row['title']."</td>";
@@ -75,6 +87,7 @@
                             echo "<td>".$row['name']."</td>";
                             echo "</tr>";
                             }
+                            */
                         } else {
                             echo "0 resultados";
                         }

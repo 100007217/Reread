@@ -32,8 +32,33 @@
                 <h3>Toda la actualidad en eBook</h3>
                 <!-- ACTIVIDAD 5-->
 
-                <h1>HOLA</h1>
+                <div class="buscabooks">
+                    <form action="zona.admin.php" method="post">
+                        Autor
+                        <br>
+                        <input type="text" placeholder="Introduce el autor" name="autor">
+                        <br>
+                        <label for="pais">Selecciona un pais</label>
+                        <br>
+                        <input list="paises" name="pais">
+                        <datalist id="paises">
 
+                        <?php
+                        $query="select distinct Country from Authors";
+                        $result = mysqli_query($conn, $query);
+
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo "<option value='".$row['Country']."'>";
+                            }                   
+                        ?>
+                        <option value='<?php $row['Country']?>'>
+
+
+                        </datalist>
+                        <br>
+                        <input type="submit" value="Buscar" name="filtro">
+                    </form>
+                </div>
                 <!-- ACTIVIDAD 4 -->
                 <?php
                     include '../services/connection.php';
