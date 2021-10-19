@@ -30,6 +30,10 @@
             </div>
             <div class="textpage">
                 <h3>Toda la actualidad en eBook</h3>
+                <!-- ACTIVIDAD 5-->
+
+                <h1>HOLA</h1>
+
                 <!-- ACTIVIDAD 4 -->
                 <?php
                     include '../services/connection.php';
