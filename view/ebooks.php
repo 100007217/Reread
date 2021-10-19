@@ -30,37 +30,35 @@
             </div>
             <div class="textpage">
                 <h3>Toda la actualidad en eBook</h3>
-                <div class="gallery">
-                    <img src="../img/cell.jpeg" alt="Cell">
-                    <div class="desc">A través de los teléfonos móviles se envía un mensaje que convierte a todos en esclavos asesinos...</div>
-                </div>
+                <!-- ACTIVIDAD 4 -->
+                <?php
+                    include '../services/connection.php';
 
-                <div class="gallery">
-                    <img src="../img/elciclodelhombrelobo.jpeg" alt="El ciclo del hombre lobo">
-                    <div class="desc">Una escalofriante revisión del mito del hombre lobo por el rey de la literatura de terror...</div>
-                </div>
+                    $query="select * from books";
+                    $result = mysqli_query($conn, $query);
 
-                <div class="gallery">
-                    <img src="../img/elresplandor.jpeg" alt="El resplandor">
-                    <div class="desc">Esa es la palabra que Danny había visto en el espejo. Y, aunque no sabía leer, entendió que era un mensaje de horror...</div>
-                </div>
+                    if (!empty($result) && mysqli_num_rows($result) > 0) {
+                    // datos de salida de cada fila (fila = row)
+                        while ($row = mysqli_fetch_array($result)) {
+                            //echo "<p>".$row['img']."</p>";
+                            //echo "<p>".$row['Description']."</p>";
 
-                <div class="gallery clear">
-                    <img src="../img/doctorsleep.jpeg" alt="doctorsleep">
-                    <div class="desc">Una novela que entusiasmará a los millones de lectores de El resplandor y que encantará...</div>
-                </div>
+                            echo "<div class='gallery'>
+                                     <img src='../img/".$row['img']."' alt='Cell'>
+                                <div class='desc'>".$row['Description']."</div>
+                                </div>";
+                        }
+                    }
+                        
 
-                <div class="gallery">
-                    <img src="../img/mientrasescribo.jpeg" alt="Mientras escribo">
-                    <div class="desc">Pocas veces un libro sobre el oficio de escribir ha resultado tan clarificador, útil y revelador.</div>
-                </div>
+                ?>
 
             </div>
         </div>
         <div class="column side">
             <h2>Top ventas</h2>
             <?php
-                // 1. Conexión con la base de datos	
+                // 1. Conexión con la base de datos
                 include '../services/connection.php';
 
                 // 2. Selección y muestra de datos de la base de datos
