@@ -14,6 +14,9 @@
 
     <div class="logo">
         <h1>Re-Read</h1>
+        <a href="login.html">
+            <button>Login</button>
+        </a>
     </div>
 
     <div class="header">

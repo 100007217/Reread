@@ -151,6 +151,11 @@ body {
     clear: both;
 }
 
+.login {
+    padding: 30px;
+    background-color: white;
+}
+
 
 /*Gallery*/
 
