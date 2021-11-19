@@ -33,7 +33,7 @@
                 <!-- ACTIVIDAD 5-->
 
                 <div class="buscabooks">
-                    <form action="zona.admin.php" method="post">
+                    <form action="ebooks.php" method="post">
                         Autor
                         <br>
                         <input type="text" placeholder="Introduce el autor" name="autor">
@@ -42,18 +42,18 @@
                         <br>
                         <input list="paises" name="pais">
                         <datalist id="paises">
-
+                        <option value="Cualquiera"></option>
+                        
                         <?php
-                        $query="select distinct Country from Authors";
+                        include '../services/connection.php';
+                        $query="select distinct Country from Authors order by country asc";
                         $result = mysqli_query($conn, $query);
-
-                        while ($row = mysqli_fetch_array($result)) {
-                            echo "<option value='".$row['Country']."'>";
-                            }                   
+                        
+                        foreach ($result as $row) {
+                            echo "<p>".$row['Country']."</p>";
+                            echo "<option value =".$row['Country']."></option>";
+                        };
                         ?>
-                        <option value='<?php $row['Country']?>'>
-
-
                         </datalist>
                         <br>
                         <input type="submit" value="Buscar" name="filtro">
@@ -62,8 +62,34 @@
                 <!-- ACTIVIDAD 4 -->
                 <?php
                     include '../services/connection.php';
-
-                    $query="select * from books";
+                    if (isset($_POST['pais']) && $_POST['pais']!="" && !isset($_POST['autor'])) {
+                        $pais=$_POST['pais'];
+                        if ($pais==='Cualquiera') {
+                            $pais="";
+                        }
+                        $query="select books.img,books.Description from books 
+                        inner join BooksAuthors on booksauthors.bookid=books.Id 
+                        inner join authors on BooksAuthors.AuthorId=authors.id 
+                        where authors.country like '%$pais%';";
+                    } elseif (isset($_POST['autor']) && !isset($_POST['pais'])){
+                        $autor=$_POST['autor'];
+                        $query="select books.img,books.Description from books 
+                        inner join BooksAuthors on booksauthors.bookid=books.Id 
+                        inner join authors on BooksAuthors.AuthorId=authors.id 
+                        where authors.name like '%$autor%';";
+                    } elseif (isset($_POST['autor']) && isset($_POST['pais'])){
+                        $pais=$_POST['pais'];
+                        if ($pais==='Cualquiera') {
+                            $pais="";
+                        }
+                        $autor=$_POST['autor'];
+                        $query="select books.img,books.Description from books 
+                        inner join BooksAuthors on booksauthors.bookid=books.Id 
+                        inner join authors on BooksAuthors.AuthorId=authors.id 
+                        where authors.name like '%$autor%' and authors.Country like '%$pais%';";
+                    }else{
+                        $query="select * from books";
+                    }
                     $result = mysqli_query($conn, $query);
 
                     if (!empty($result) && mysqli_num_rows($result) > 0) {
