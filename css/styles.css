@@ -151,11 +151,6 @@ body {
     clear: both;
 }
 
-.login {
-    padding: 30px;
-    background-color: white;
-}
-
 
 /*Gallery*/
 
@@ -301,6 +296,14 @@ input[type=password] {
     margin: 3% 0;
     width: 80%;
     color: red;
+}
+
+#email {
+    border-color: #4CAF50;
+}
+
+#password {
+    border-color: #4CAF50;
 }
 
 #login {
